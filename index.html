@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Julien Pavassier</title>
+<meta name="description" content="Julien Pavassier : automatisation Excel/VBA, scripts Python et modèles financiers. Portfolio de projets.">
+<style>
+  :root {
+    --bg: #fafaf8; --surface: #ffffff; --text: #1c1f24; --muted: #5b6270;
+    --line: #e3e4e0; --accent: #1f5f8b; --accent-soft: #e8f0f6; --tag: #f1f2ef;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --surface: #1b1f24; --text: #e6e8eb; --muted: #9aa3ae;
+      --line: #2c323a; --accent: #7fb6dc; --accent-soft: #1f2a33; --tag: #232930;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --surface: #1b1f24; --text: #e6e8eb; --muted: #9aa3ae;
+    --line: #2c323a; --accent: #7fb6dc; --accent-soft: #1f2a33; --tag: #232930;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  header.top { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+  .name { font-weight: 650; letter-spacing: .01em; }
+  .controls { display: flex; gap: 8px; }
+  .controls button {
+    font: inherit; font-size: 14px; color: var(--text); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; cursor: pointer;
+  }
+  .controls button:hover { border-color: var(--accent); }
+  .hero { padding: 40px 0 32px; }
+  .hero h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.2; margin: 0 0 16px; font-weight: 700; }
+  .hero p { color: var(--muted); max-width: 640px; margin: 0 0 8px; font-size: 18px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .btn {
+    display: inline-block; text-decoration: none; padding: 10px 18px; border-radius: 8px;
+    border: 1px solid var(--accent); color: var(--accent); font-weight: 600;
+  }
+  .btn.primary { background: var(--accent); color: var(--bg); }
+  h2 { font-size: 22px; margin: 48px 0 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .card img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain;
+    background: #fff; border-bottom: 1px solid var(--line); display: block; }
+  .card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+  .card h3 { margin: 0 0 8px; font-size: 18px; }
+  .card p { margin: 0 0 6px; color: var(--muted); font-size: 15px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 14px; padding: 0; list-style: none; }
+  .tags li { background: var(--tag); border-radius: 6px; padding: 2px 8px; font-size: 13px; }
+  .card a.link { margin-top: auto; color: var(--accent); font-weight: 600; text-decoration: none; }
+  .card a.link:hover, a:hover { text-decoration: underline; }
+  .note { font-size: 13px; font-style: italic; }
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+  .service { background: var(--accent-soft); border-radius: 10px; padding: 16px; }
+  .service h3 { margin: 0 0 6px; font-size: 16px; }
+  .service p { margin: 0; font-size: 15px; color: var(--muted); }
+  .contact { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .contact ul { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
+  footer { color: var(--muted); font-size: 13px; padding: 40px 0 32px; }
+  a { color: var(--accent); }
+  /* Langue : FR par défaut, EN si html[lang=en] */
+  html[lang="fr"] [lang="en"]:not(html) { display: none; }
+  html[lang="en"] [lang="fr"]:not(html) { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="name">Julien Pavassier</span>
+    <div class="controls">
+      <button id="lang" type="button" aria-label="Switch language">EN</button>
+      <button id="theme" type="button" aria-label="Changer de thème / toggle theme">◐</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>
+      <span lang="fr">Automatisation Excel, scripts Python et modèles financiers, testés et documentés.</span>
+      <span lang="en">Excel automation, Python scripts and financial models, tested and documented.</span>
+    </h1>
+    <p lang="fr">Étudiant en M2 finance à Centrale Marseille. Je transforme des tâches répétitives sur tableur en outils fiables, et j'aime les problèmes de pricing et de probabilités.</p>
+    <p lang="en">MSc finance student at Centrale Marseille. I turn repetitive spreadsheet work into reliable tools, and I enjoy pricing and probability problems.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projets"><span lang="fr">Voir les projets</span><span lang="en">See projects</span></a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+  </section>
+
+  <h2 id="projets"><span lang="fr">Projets</span><span lang="en">Projects</span></h2>
+  <div class="grid">
+    <article class="card">
+      <img src="assets/excel-reporting.png" alt="Avant / après : export brut et reporting nettoyé" loading="lazy" width="1560" height="806">
+      <div class="body">
+        <h3><span lang="fr">Reporting Excel automatique</span><span lang="en">Automated Excel reporting</span></h3>
+        <p lang="fr">Un export brut de 1 483 lignes (5 formats de date, 736 montants en texte, 24 doublons) devient un classeur de 7 onglets en une commande.</p>
+        <p lang="fr">Graphiques Excel natifs ; chaque correction est listée, rien n'est supprimé en silence.</p>
+        <p lang="en">A raw 1,483-row export (5 date formats, 736 amounts stored as text, 24 duplicates) becomes a 7-sheet report in one command.</p>
+        <p lang="en">Native Excel charts; every correction is listed, nothing is dropped silently.</p>
+        <ul class="tags"><li>Python</li><li>pandas</li><li>openpyxl</li><li>VBA</li><li>pytest</li></ul>
+        <a class="link" href="https://github.com/pavass06/excel-reporting-automation">GitHub →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="assets/option-pricer.png" alt="Convergence Monte Carlo et arbre binomial vers Black-Scholes" loading="lazy" width="1430" height="546">
+      <div class="body">
+        <h3>option-pricer</h3>
+        <p lang="fr">Black-Scholes et grecques, volatilité implicite, Monte Carlo, arbre binomial (options américaines), plus une version Excel sans macro.</p>
+        <p lang="fr">Sur 100 000 trajectoires, l'erreur standard Monte Carlo passe de 0,046 à environ 0,009 avec réduction de variance.</p>
+        <p lang="en">Black-Scholes and Greeks, implied volatility, Monte Carlo, binomial tree (American options), plus a macro-free Excel version.</p>
+        <p lang="en">With 100,000 paths, the Monte Carlo standard error drops from 0.046 to about 0.009 with variance reduction.</p>
+        <ul class="tags"><li>Python</li><li>NumPy</li><li>pytest</li><li>Excel</li><li>VBA</li></ul>
+        <a class="link" href="https://github.com/pavass06/option-pricer">GitHub →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="assets/bet-opportunity.png" alt="Simulation Monte Carlo de bankroll : Kelly plein et fractionnaire" loading="lazy" width="1650" height="660">
+      <div class="body">
+        <h3>Bet-opportunity</h3>
+        <p lang="fr">Compare des cotes, retire la marge du bookmaker et dimensionne les mises avec le critère de Kelly.</p>
+        <p lang="fr">5 000 trajectoires simulées : même avec un avantage réel de 3 %, 22 à 33 % finissent sous leur capital de départ.</p>
+        <p lang="en">Compares odds, removes the bookmaker margin and sizes stakes with the Kelly criterion.</p>
+        <p lang="en">5,000 simulated paths: even with a real 3% edge, 22–33% end below their starting bankroll.</p>
+        <p class="note"><span lang="fr">Projet technique de probabilités. </span>Not betting advice, no profit promised.</p>
+        <ul class="tags"><li>Python</li><li>Flask</li><li>SQLite</li><li>Monte Carlo</li><li>pytest</li></ul>
+        <a class="link" href="https://github.com/pavass06/Bet-opportunity">GitHub →</a>
+      </div>
+    </article>
+  </div>
+
+  <h2><span lang="fr">Ce que je peux faire pour vous</span><span lang="en">What I can do for you</span></h2>
+  <div class="services">
+    <div class="service">
+      <h3><span lang="fr">Automatisation Excel / VBA</span><span lang="en">Excel / VBA automation</span></h3>
+      <p lang="fr">Macros, nettoyage d'exports, tableaux de bord mis à jour en un clic.</p>
+      <p lang="en">Macros, export clean-up, one-click dashboards.</p>
+    </div>
+    <div class="service">
+      <h3><span lang="fr">Scripts Python</span><span lang="en">Python scripts</span></h3>
+      <p lang="fr">Traitement de fichiers, rapprochements, génération de rapports Excel ou PDF.</p>
+      <p lang="en">File processing, reconciliations, Excel or PDF report generation.</p>
+    </div>
+    <div class="service">
+      <h3><span lang="fr">Modèles financiers</span><span lang="en">Financial models</span></h3>
+      <p lang="fr">Modèles de calcul (valorisation, échéanciers, scénarios) lisibles et vérifiables.</p>
+      <p lang="en">Readable, auditable calculation models (valuation, schedules, scenarios).</p>
+    </div>
+    <div class="service">
+      <h3><span lang="fr">Sites web, Shopify et applis</span><span lang="en">Websites, Shopify and apps</span></h3>
+      <p lang="fr">Site vitrine rapide comme celui-ci, boutique Shopify sur mesure avec animations, application mobile (Focal, publiée sur l'App Store).</p>
+      <p lang="en">Fast showcase sites like this one, custom animated Shopify stores, mobile apps (Focal, published on the App Store).</p>
+    </div>
+  </div>
+
+  <h2 id="contact">Contact</h2>
+  <div class="contact">
+    <p lang="fr" style="margin:0">Une tâche Excel ou Python à automatiser, ou une question sur un projet ? Écrivez-moi.</p>
+    <p lang="en" style="margin:0">An Excel or Python task to automate, or a question about a project? Get in touch.</p>
+    <ul>
+      <li><a href="https://www.linkedin.com/in/julien-pavassier/">LinkedIn</a></li>
+      <li><a href="https://www.malt.fr/profile/julienpavassier">Malt</a></li>
+      <li><a href="https://github.com/pavass06">GitHub</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    <p lang="fr">Pavassier Quantitative Advisory, micro-entreprise, SIREN 979 745 395. Les projets présentés sont des travaux personnels de démonstration sur données synthétiques ou publiques ; aucun contenu de ce site ne constitue un conseil en investissement.</p>
+    <p lang="en">Pavassier Quantitative Advisory, French sole proprietorship, SIREN 979 745 395. Projects shown are personal demonstration work on synthetic or public data; nothing on this site is investment advice.</p>
+    <p lang="fr">Ce site n'utilise ni cookie ni traceur.</p>
+    <p lang="en">This site uses no cookies or trackers.</p>
+  </footer>
+</div>
+<script>
+  (function () {
+    var root = document.documentElement;
+    function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    var langBtn = document.getElementById('lang');
+    function setLang(l) { root.lang = l; langBtn.textContent = l === 'fr' ? 'EN' : 'FR'; }
+    setLang(load('lang') === 'en' ? 'en' : 'fr');
+    langBtn.addEventListener('click', function () {
+      var l = root.lang === 'fr' ? 'en' : 'fr'; setLang(l); store('lang', l);
+    });
+    var t = load('theme'); if (t) root.setAttribute('data-theme', t);
+    document.getElementById('theme').addEventListener('click', function () {
+      var cur = root.getAttribute('data-theme') ||
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = cur === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next); store('theme', next);
+    });
+  })();
+</script>
+</body>
+</html>
